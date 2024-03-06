@@ -23,7 +23,6 @@ cardElement.remove();
 
 initialCards.forEach((cardInfo) => {
 const cardElement = createCardElement(cardInfo, () => removeCard(cardElement));
-cardElement.remove();
 
 cardList.append(cardElement);
 });
