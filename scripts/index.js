@@ -1,28 +1,32 @@
-let cardList = document.querySelector('.places__list');
-const cardTemplate = document.querySelector('#card-template');
+const cardList = document.querySelector(".places__list");
+const cardTemplate = document.querySelector("#card-template");
 
 const createCardElement = (cardInfo, removeCallBack) => {
-const cardElement = cardTemplate.content.querySelector('.places__item').cloneNode(true);
+  const cardElement = cardTemplate.content
+    .querySelector(".places__item")
+    .cloneNode(true);
 
-cardElement.querySelector('.card__image').src = cardInfo.link;
-cardElement.querySelector('.card__image').alt = cardInfo.name;
-cardElement.querySelector('.card__title').textContent = cardInfo.name;
+  const cardImage = cardElement.querySelector(".card__image");
+  cardImage.src = cardInfo.link;
+  cardImage.alt = cardInfo.name;
+  cardElement.querySelector(".card__title").textContent = cardInfo.name;
 
-let deleteButton = cardElement.querySelector('.card__delete-button');
-deleteButton.addEventListener('click', () => {
-removeCallBack();
+  const deleteButton = cardElement.querySelector(".card__delete-button");
+  deleteButton.addEventListener("click", () => {
+    removeCallBack();
+  });
 
-});
-
-return cardElement; 
+  return cardElement;
 };
 
 const removeCard = (cardElement) => {
-cardElement.remove();
+  cardElement.remove();
 };
 
 initialCards.forEach((cardInfo) => {
-const cardElement = createCardElement(cardInfo, () => removeCard(cardElement));
+  const cardElement = createCardElement(cardInfo, () =>
+    removeCard(cardElement),
+  );
 
-cardList.append(cardElement);
+  cardList.append(cardElement);
 });
