@@ -12,7 +12,6 @@ import {
     createCardElement, 
     removeCard, 
     cardList,
-    addImagePopupListener 
 } from '../components/card'; 
 
 // Назначим эллементы, добавим обработчики 
@@ -31,5 +30,3 @@ const profileAddButton = document.querySelector('.profile__add-button')
 profileAddButton.addEventListener('click', () => { 
     openPopup(popupAdd) 
 }); 
-
-addImagePopupListener();
