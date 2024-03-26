@@ -39,44 +39,6 @@ const PopupTypeImage = document.querySelector('.popup_type_image');
 const imageUrl = document.querySelector('.popup__input_type_url');
 const cardName = document.querySelector('.popup__input_type_card-name');
 
-// Base card create 
-// callback функция, выводит карточки на страничку + определяет кнопку для удаления   
-const createCardElement = (cardInfo, removeCallBack) => {
-    const cardElement = cardTemplate.content
-        .querySelector(".places__item")
-        .cloneNode(true);
-
-    const cardImage = cardElement.querySelector(".card__image");
-    cardImage.src = cardInfo.link;
-    cardImage.alt = cardInfo.name;
-    cardElement.querySelector(".card__title").textContent = cardInfo.name;
-
-    const cardLikeButton = cardElement.querySelector('.card__like-button');
-    cardLikeButton.addEventListener('click', (event) => {
-        handleCardLike(event)
-    });
-    const deleteButton = cardElement.querySelector(".card__delete-button");
-    deleteButton.addEventListener("click", () => {
-        removeCallBack();
-    });
-
-    return cardElement;
-};
-
-initialCards.forEach((cardInfo) => {
-    const cardElement = createCardElement(cardInfo, () =>
-        handleCardDelete(cardElement),
-    );
-    cardList.append(cardElement);
-});
-
-// очистка полей popup при добавлении карточки 
-function clearInputFieldsCardCreateOnClose() {
-    if (popupNewPlaceForm) {
-        popupNewPlaceForm.reset()
-    }
-}
-
 // Обработчик «отправки» формы edit profile
 function handleFormSubmit(evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.  
@@ -131,16 +93,29 @@ const handleCardLike = (event) => {
 // открытие popup карточки
 const handleCardClick = (event) => {
     if (event.target.classList.contains('card__image')) {
-        const card = event.target.closest('.card');
-        if (card) {
-            const cardTitle = card.querySelector('.card__title');
-            const cardImage = event.target;
-            popupOpenTitle.textContent = cardTitle.textContent;
-            popupOpenImage.src = cardImage.src;
-            openPopup(PopupTypeImage)
-        }
+      const card = event.target.closest('.card');
+      if (card) {
+        const cardTitle = card.querySelector('.card__title');
+        const cardImage = event.target;
+  
+        const altText = cardTitle.textContent;
+        cardImage.alt = altText; 
+  
+        popupOpenTitle.textContent = cardTitle.textContent;
+        popupOpenImage.src = cardImage.src;
+        popupOpenImage.alt = cardImage.alt; 
+  
+        openPopup(PopupTypeImage);
+      }
     }
-};
+  };
+  
+// очистка полей popup при добавлении карточки 
+function clearInputFieldsCardCreateOnClose() {
+    if (popupNewPlaceForm) {
+        popupNewPlaceForm.reset()
+    }
+}
 
 // удаление карточки
 const handleCardDelete = (cardElement) => {
@@ -166,3 +141,12 @@ document.addEventListener('click', (event) => {
         handleCardClick(event);
     }
 });
+
+// Выводим базовые карточки  
+initialCards.forEach((cardInfo) => {
+    const cardElement = createCard({
+      cardName: cardInfo.name,
+      imageUrl: cardInfo.link
+    }, handleCardDelete, handleCardLike, handleCardClick);
+    cardList.append(cardElement);
+  });
