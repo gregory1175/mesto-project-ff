@@ -3,14 +3,14 @@ let profilePopup = document.querySelector('.popup_is-opened');
 function openPopup(popupElement) {
     popupElement.classList.add('popup_is-opened');
     document.addEventListener('keydown', handleEscape);
-    document.addEventListener('click', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     profilePopup = popupElement;
 }
 
 function closePopup(popupElement) {
     popupElement.classList.remove('popup_is-opened');
     document.removeEventListener('keydown', handleEscape);
-    document.removeEventListener('click', handleClickOutside);
+    document.removeEventListener('mousedown', handleClickOutside);
 }
 
 function handleEscape(evt) {
