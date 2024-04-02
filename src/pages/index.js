@@ -39,24 +39,24 @@ const PopupTypeImage = document.querySelector('.popup_type_image');
 const imageUrl = document.querySelector('.popup__input_type_url');
 const cardName = document.querySelector('.popup__input_type_card-name');
 
-// // Обработчик «отправки» формы edit profile
-// function handleFormSubmit(evt) {
-//     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.  
-//     // Так мы можем определить свою логику отправки.  
-//     const nameValue = nameInput.value;
-//     const jobValue = jobInput.value;
+// Обработчик «отправки» формы edit profile
+function handleFormSubmit(evt) {
+    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.  
+    // Так мы можем определить свою логику отправки.  
+    const nameValue = nameInput.value;
+    const jobValue = jobInput.value;
 
-//     nameElement.textContent = nameValue;
-//     jobElement.textContent = jobValue;
-//     // закрытие формы после отправки данных   
-//     const profilePopup = document.querySelector('.popup_is-opened');
-//     closePopup(profilePopup);
-// }
+    nameElement.textContent = nameValue;
+    jobElement.textContent = jobValue;
+    // закрытие формы после отправки данных   
+    const profilePopup = document.querySelector('.popup_is-opened');
+    closePopup(profilePopup);
+}
 
-// // Прикрепляем обработчик к форме:  
-// popupEditForm.addEventListener('submit', handleFormSubmit)
+// Прикрепляем обработчик к форме:  
+popupEditForm.addEventListener('submit', handleFormSubmit)
 
-// // Изменение полей ввода popup при редактировании профиля  
+// Изменение полей ввода popup при редактировании профиля  
 function clearInputFieldsOnClose() {
     if (popupTypeEdit) {
 
@@ -155,44 +155,44 @@ initialCards.forEach((cardInfo) => {
 // formValidate  
 
 const showInputError = (formElement, inputElement, errorMessage) => {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add('popup__input-error');
-    errorElement.textContent = errorMessage;
-    errorElement.classList.add('popup__message-error-active');
-  };
-  
-  const hideInputError = (formElement, inputElement) => {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove('popup__input-error');
-    errorElement.classList.remove('popup__message-error-active');
-    errorElement.textContent = '';
-  };
-  
-  const checkInputValidity = (formElement, inputElement) => {
-    if (!inputElement.validity.valid) {
-      showInputError(formElement, inputElement, inputElement.validationMessage);
-    } else {
-      hideInputError(formElement, inputElement);
-    }
-  };
-  
-  const setEventListeners = (formElement) => {
-    const inputList = Array.from(formElement.querySelectorAll('popup__input'));
-    inputList.forEach((inputElement) => {
-      inputElement.addEventListener('input', function () {
-        checkInputValidity(formElement, inputElement);
-      });
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.add('popup__input-error');
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add('popup__message-error-active');
+};
+
+const hideInputError = (formElement, inputElement) => {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+  inputElement.classList.remove('popup__input-error');
+  errorElement.classList.remove('popup__message-error-active');
+  errorElement.textContent = '';
+};
+
+const checkInputValidity = (formElement, inputElement) => {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage);
+  } else {
+    hideInputError(formElement, inputElement);
+  }
+};
+
+const setEventListeners = (formElement) => {
+  const inputList = Array.from(formElement.querySelectorAll('popup__input'));
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', function () {
+      checkInputValidity(formElement, inputElement);
     });
-  };
-  
-  const enableValidation = () => {
-    const formList = Array.from(document.querySelectorAll('popup__form'));
-    formList.forEach((formElement) => {
-      formElement.addEventListener('submit', (evt) => {
-        evt.preventDefault();
-      });
-      setEventListeners(formElement);
+  });
+};
+
+const enableValidation = () => {
+  const formList = Array.from(document.querySelectorAll('popup__form'));
+  formList.forEach((formElement) => {
+    formElement.addEventListener('submit', (evt) => {
+      evt.preventDefault();
     });
-  };
-  
-  enableValidation()
+    setEventListeners(formElement);
+  });
+};
+
+enableValidation()

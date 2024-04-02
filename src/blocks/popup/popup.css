@@ -12,7 +12,7 @@
 @import url('./__field/popup__field.css');
 @import url('./__button/-inactive/popup__button-inactive.css');
 @import url('./__message-error/popup__message-error.css');
-@import url('./__message-error/-active/popup__message-error-active.css');
+@import url('./__message-error/active/popup__message-error-active.css');
 
 .popup {
   font-family: 'Inter', Arial, sans-serif;
