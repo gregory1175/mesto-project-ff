@@ -1,0 +1,4 @@
+.popup__type-avatar {
+    display: flex;
+    flex-direction: column;
+}
