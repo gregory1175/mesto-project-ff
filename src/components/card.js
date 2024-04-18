@@ -14,6 +14,7 @@ const createCard = (item, handleDelete, handleLike, handleClick) => {
   const likeButton = cardElement.querySelector('.card__like-button');
   const deleteButton = cardElement.querySelector('.card__delete-button');
 
+<<<<<<< HEAD
   if (item.isLiked) {
       likeButton.classList.add('card__like-button_is-active');
   }
@@ -26,8 +27,13 @@ const createCard = (item, handleDelete, handleLike, handleClick) => {
   });
   deleteButton.addEventListener('click', () => {
       handleDelete(item._id);
+=======
+  cardElement.addEventListener('click', handleClick);
+  likeButton.addEventListener('click', handleLike);
+  deleteButton.addEventListener('click', () => {
+      handleDelete(cardElement);
+>>>>>>> main
   });
-
   return cardElement;
 };
 

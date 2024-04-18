@@ -5,6 +5,7 @@ import {
     openPopup,
     closePopup
 } from '../components/modal'
+<<<<<<< HEAD
 // импортируем все что связано с карточками 
 import {
     createCard
@@ -61,12 +62,53 @@ const popupAvatarUrl = document.querySelector('.popup__input_type_avatar_url');
 
 //загрузим информацию о пользователе
 loadUserInfo()
+=======
+// импортируем изначальные карточки
+import {
+    initialCards
+} from './cards'
+// импортируем все что связано с карточками 
+import {
+    createCard
+} from '../components/card';
+
+const cardTemplate = document.querySelector("#card-template");
+const popupNewCard = document.querySelector('.popup_type_new-card');
+const popupType = document.querySelector('.popup_type_edit')
+const profileEditButton = document.querySelector('.profile__edit-button')
+const profileAddButton = document.querySelector('.profile__add-button')
+
+const nameElement = document.querySelector('.profile__title');
+const jobElement = document.querySelector('.profile__description');
+const popupTypeEdit = document.querySelector('.popup_type_edit');
+const inputName = popupTypeEdit.querySelector('.popup__form input[name="name"]');
+const inputInfo = popupTypeEdit.querySelector('.popup__form input[name="description"]');
+
+const cardList = document.querySelector(".places__list");
+const popupNewPlaceForm = document.querySelector('[name="new-place"]');
+const popupEditForm = document.querySelector('[name="edit-profile"]');
+const nameInput = document.querySelector('.popup__input_type_name');
+const jobInput = document.querySelector('.popup__input_type_description');
+
+const popupOpenImage = document.querySelector('.popup__image');
+const popupOpenTitle = document.querySelector('.popup__caption');
+const PopupTypeImage = document.querySelector('.popup_type_image');
+
+const imageUrl = document.querySelector('.popup__input_type_url');
+const cardName = document.querySelector('.popup__input_type_card-name');
+
+>>>>>>> main
 // Обработчик «отправки» формы edit profile
 function handleFormSubmit(evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.  
     // Так мы можем определить свою логику отправки.  
+<<<<<<< HEAD
     const nameValue = inputName.value;
     const jobValue = inputInfo.value;
+=======
+    const nameValue = nameInput.value;
+    const jobValue = jobInput.value;
+>>>>>>> main
 
     nameElement.textContent = nameValue;
     jobElement.textContent = jobValue;
@@ -75,6 +117,7 @@ function handleFormSubmit(evt) {
     closePopup(profilePopup);
 }
 
+<<<<<<< HEAD
 // Изменение полей ввода popup при редактировании профиля  
 function clearInputFieldsOnClose() {
   if (popupTypeEdit) {
@@ -104,12 +147,36 @@ profileEditButton.addEventListener('click', () => {
     openPopup(popupTypeEdit);
     clearInputFieldsOnClose(popupTypeEdit)
     clearValidation(popupTypeEdit)
+=======
+// Прикрепляем обработчик к форме:  
+popupEditForm.addEventListener('submit', handleFormSubmit)
+
+// // Изменение полей ввода popup при редактировании профиля  
+function clearInputFieldsOnClose() {
+    if (popupTypeEdit) {
+
+        if (inputName) {
+            inputName.value = nameElement.textContent;
+        }
+
+        if (inputInfo) {
+            inputInfo.value = jobElement.textContent;
+        }
+    }
+}
+
+// Добавляем слушатель для popup edit for user   
+profileEditButton.addEventListener('click', () => {
+    openPopup(popupType);
+    clearInputFieldsOnClose(popupType)
+>>>>>>> main
 });
 
 // Добавляем слушатель для popup add for user   
 profileAddButton.addEventListener('click', () => {
     openPopup(popupNewCard)
     clearInputFieldsCardCreateOnClose(popupNewCard)
+<<<<<<< HEAD
     clearValidation(popupNewCard)
 });
 
@@ -126,6 +193,38 @@ function clearInputFieldsAvatarCreateOnClose() {
     newAvatarForm.reset()
   }
 }
+=======
+});
+
+// работа лайка в карточке
+const handleCardLike = (event) => {
+    const target = event.target;
+    if (target.classList.contains('card__like-button')) {
+        target.classList.toggle('card__like-button_is-active');
+    }
+};
+
+// открытие popup карточки
+const handleCardClick = (event) => {
+    if (event.target.classList.contains('card__image')) {
+      const card = event.target.closest('.card');
+      if (card) {
+        const cardTitle = card.querySelector('.card__title');
+        const cardImage = event.target;
+  
+        const altText = cardTitle.textContent;
+        cardImage.alt = altText; 
+  
+        popupOpenTitle.textContent = cardTitle.textContent;
+        popupOpenImage.src = cardImage.src;
+        popupOpenImage.alt = cardImage.alt; 
+  
+        openPopup(PopupTypeImage);
+      }
+    }
+  };
+  
+>>>>>>> main
 // очистка полей popup при добавлении карточки 
 function clearInputFieldsCardCreateOnClose() {
     if (popupNewPlaceForm) {
@@ -133,6 +232,27 @@ function clearInputFieldsCardCreateOnClose() {
     }
 }
 
+<<<<<<< HEAD
+=======
+// удаление карточки
+const handleCardDelete = (cardElement) => {
+    cardElement.remove();
+};
+
+// Для кнопки submit добавляем слушатели/функцию передаем значения новой карточки 
+popupNewPlaceForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const cardNameValue = cardName.value;
+    const imageUrlValue = imageUrl.value;
+    const newCard = createCard({
+        cardName: cardNameValue,
+        imageUrl: imageUrlValue
+    }, handleCardDelete, handleCardLike, handleCardClick);
+    cardList.prepend(newCard);
+    closePopup(popupNewCard)
+});
+
+>>>>>>> main
 // открываем popup карточки
 document.addEventListener('click', (event) => {
     if (event.target.classList.contains('card__image')) {
@@ -140,6 +260,7 @@ document.addEventListener('click', (event) => {
     }
 });
 
+<<<<<<< HEAD
 // Вызываем слушатель для popup edit
 popupEditForm.addEventListener('submit', function(event) {
   handleFormSubmit(event)
@@ -299,3 +420,13 @@ newAvatarForm.addEventListener('submit', (event) => {
       });
   };
   addInitialCards()
+=======
+// Выводим базовые карточки  
+initialCards.forEach((cardInfo) => {
+    const cardElement = createCard({
+      cardName: cardInfo.name,
+      imageUrl: cardInfo.link
+    }, handleCardDelete, handleCardLike, handleCardClick);
+    cardList.append(cardElement);
+  });
+>>>>>>> main
