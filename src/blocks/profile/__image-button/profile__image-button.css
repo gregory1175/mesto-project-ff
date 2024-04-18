@@ -1,0 +1,8 @@
+.profile__image-button {
+    background-image: url('../../../images/edit-profile-icon.svg');
+    background-image: none;
+}
+
+.profile__image-button:hover {
+    background-image: block;
+  }

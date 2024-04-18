@@ -1,6 +1,7 @@
-.popup__message-error {
+.popup__message-error-active {
+    opacity: 1;
+    color: red;
     font-size: 12px;
-    opacity: 0;
     position: absolute;
     top: calc(100% + 1px);
     left: 0;

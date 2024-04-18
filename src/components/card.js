@@ -14,11 +14,20 @@ const createCard = (item, handleDelete, handleLike, handleClick) => {
   const likeButton = cardElement.querySelector('.card__like-button');
   const deleteButton = cardElement.querySelector('.card__delete-button');
 
-  cardElement.addEventListener('click', handleClick);
-  likeButton.addEventListener('click', handleLike);
-  deleteButton.addEventListener('click', () => {
-      handleDelete(cardElement);
+  if (item.isLiked) {
+      likeButton.classList.add('card__like-button_is-active');
+  }
+
+  cardElement.addEventListener('click', () => {
+      handleClick(item);
   });
+  likeButton.addEventListener('click', () => {
+      handleLike(item._id);
+  });
+  deleteButton.addEventListener('click', () => {
+      handleDelete(item._id);
+  });
+
   return cardElement;
 };
 
