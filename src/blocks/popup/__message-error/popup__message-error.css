@@ -1,9 +1,5 @@
 .popup__message-error {
     font-size: 12px;
-<<<<<<< HEAD
-=======
-    color: red;
->>>>>>> main
     opacity: 0;
     position: absolute;
     top: calc(100% + 1px);
