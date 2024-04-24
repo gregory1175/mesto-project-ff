@@ -20,7 +20,6 @@ const createCard = (item, handleDelete, handleLike, handleClick, userData) => {
       deleteButton.style.display = 'none';
     }
 
-    // Check if likes array exists and contains user's like
     if (item.likes && item.likes.some(like => like._id === userData._id)) {
         likeButton.classList.add('card__like-button_is-active');
     } else {
