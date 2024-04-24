@@ -25,13 +25,16 @@ function handleClickOutside(evt) {
     }
 }
 
-document.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('popup__close')) {
-        closePopup(profilePopup);
-    }
-});
-
+function setPopupListeners(){
+    document.addEventListener('click', (evt) => {
+        if (evt.target.classList.contains('popup__close')) {
+            closePopup(profilePopup);
+        }
+    });
+    } 
+    
 export {
     openPopup,
     closePopup,
+    setPopupListeners
 };

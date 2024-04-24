@@ -52,14 +52,15 @@ export {
   });
   }
 
-  const toggleButtonState = (inputList, buttonElement) => { 
-    if(hasInvalidInput(inputList)) 
-    {
-      buttonElement.classList.add('popup__button-inactive');
+  const toggleButtonState = (inputList, buttonElement) => {
+    if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add('popup__button-inactive');
+    buttonElement.setAttribute('disabled', 'disabled');
     } else {
-      buttonElement.classList.remove('popup__button-inactive');
-    } 
-  }
+    buttonElement.classList.remove('popup__button-inactive');
+    buttonElement.removeAttribute('disabled');
+    }
+    }
 
   const clearValidation = (formElement) => {
     const inputError = Array.from(formElement.querySelectorAll('.popup__input'))
