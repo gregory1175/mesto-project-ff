@@ -248,7 +248,6 @@ newAvatarForm.addEventListener('submit', (event) => {
 const handleCardLike = (cardId) => {
   checkLikeApi(cardId)
       .then(data => {
-        console.log(data)
           const likeCount = data.likes.length;
           const likeCountElement = document.querySelector(`[data-card-id="${cardId}"] .card__likes-counter`);
           likeCountElement.textContent = likeCount;

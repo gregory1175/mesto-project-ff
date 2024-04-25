@@ -3,7 +3,6 @@ export {
         clearValidation
 }
 
-
 const showInputError = (formElement, inputElement, errorMessage, settings) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(settings.inputErrorClass);
@@ -62,14 +61,16 @@ const showInputError = (formElement, inputElement, errorMessage, settings) => {
   };
 
   const clearValidation = (formValidate, settings) => {
-    const inputError = Array.from(settings.querySelectorAll('.popup__input'));
-    const formButtons = Array.from(formValidate.querySelectorAll('.popup__button'));
-    inputError.forEach((spanText) => {
-        hideInputError(formValidate, spanText, settings);
+    const inputError = Array.from(formValidate.querySelectorAll(settings.inputSelector));
+   
+    inputError.forEach((inputElement) => {
+        hideInputError(formValidate, inputElement, settings);
     });
-    formButtons.forEach((button) => {
-        toggleButtonState(inputError, button, settings);
-    });
+
+    const formButtons = Array.from(formValidate.querySelectorAll('.popup__button')); 
+    formButtons.forEach((button) => { 
+      toggleButtonState(inputError, button, settings); 
+  }); 
 };
 
   const enableValidation = (settings) => {
