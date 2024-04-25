@@ -6,16 +6,13 @@ export {
 
 const showInputError = (formElement, inputElement, errorMessage, settings) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  console.log(settings.inputErrorClass)
   inputElement.classList.add(settings.inputErrorClass);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(settings.errorClass);
   };
   
   const hideInputError = (formElement, inputElement, settings) => {
-    
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  console.log(settings.inputErrorClass)
   inputElement.classList.remove(settings.inputErrorClass);
   errorElement.classList.remove(settings.errorClass);
   errorElement.textContent = '';
