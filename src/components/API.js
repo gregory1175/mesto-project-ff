@@ -13,13 +13,17 @@ const config = {
 
 // Загружаем информацию пользователя
 async function loadUserInfo() {
-    const response = await fetch(`${config.baseUrl}/users/me`, {
-      method: 'GET',
-      headers: config.headers
-    });
-    const data = await checkResponse(response);
-    return data;
-  } 
+  const res = await fetch(`${config.baseUrl}/users/me`, {
+    method: 'GET',
+    headers: config.headers,
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+  const data = await res.json();
+  return data;
+}
 
 
 // Получаем данные пользователя 
@@ -27,8 +31,11 @@ async function getUserData() {
   const res = await fetch(`${config.baseUrl}/users/me`, { 
     method: 'GET', 
     headers: config.headers 
-  }); 
-  return await res.json(); 
+  });   
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+  return await res.json();
 } 
 
 
@@ -59,6 +66,10 @@ async function addNewCard(data) {
       body: JSON.stringify(data)
 
     });
+    if (!res.ok) {
+      throw new Error('Failed to fetch data');
+    }
+
     const responseData = await res.json(); 
     return responseData;
 }
@@ -71,10 +82,13 @@ async function updateProfileAvatar(data) {
         body: JSON.stringify(data)
   });
 }
+
 // запрос лайка 
-const likeApi = (cardId) => {
-  const likeButton = document.querySelector(`[data-card-id="${cardId}"] .card__like-button`);
+const checkLikeApi = (cardId) => {
+  const likeButton = document.querySelector(`[data-card-id="${cardId}"]  .card__like-button`);
+  console.log(likeButton)
   const isLiked = likeButton.classList.contains('card__like-button_is-active');
+  console.log(isLiked)
   const method = isLiked ? 'DELETE' : 'PUT';
 
   return request(`${config.baseUrl}/cards/likes/${cardId}`, {
@@ -84,7 +98,7 @@ const likeApi = (cardId) => {
 };
 
 // запрос на удаление карточки 
-const cardApiDelete = (cardId) => { 
+const deleteCardApi = (cardId) => { 
   const confirmation = confirm('Вы уверены что хотите удалить эту карточку?');
   if (confirmation) {
       return fetch(`${config.baseUrl}/cards/${cardId}`, {
@@ -104,6 +118,6 @@ export {
   pushMyInfo,
   addNewCard,
   updateProfileAvatar,
-  likeApi,
-  cardApiDelete
+  checkLikeApi,
+  deleteCardApi
 }

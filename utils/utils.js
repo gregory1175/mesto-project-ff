@@ -1,8 +1,8 @@
-function checkResponse(response) {
-    if (!response.ok) {
+function checkResponse(res) {
+    if (!res.ok) {
         throw new Error('Failed to fetch data');
     }
-    return response.json();
+    return res.json();
 }
 
 async function request(url, options) {

@@ -54,7 +54,7 @@
           data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы" required/>
           <span class="span-text description-input-error" id="span-description-error"></span>
         </label>
-        <button type="submit" class="button popup__button popup__button-inactive">Сохранить</button>
+        <button type="submit" class="button popup__button">Сохранить</button>
         </fieldset>
       </form>
     </div>
@@ -101,7 +101,7 @@
       <input type="url" name="avatar" class="popup__input popup__input_type_avatar_url" id="avatar-link-input" placeholder="Ссылка на картинку" required>
       <span class="span-text avatar-link-input-error" ></span>
       </label>
-      <button type="submit" class="button popup__button popup__button_add_card">Сохранить</button>
+      <button type="submit" class="button popup__button">Сохранить</button>
     </fieldset>
   </form>
   </div>
@@ -109,7 +109,7 @@
 <!-- Шаблон карточки-->
 <template id="card-template">
   <li class="places__item card">
-    <img class="card__image" src="" alt="" />
+    <img class="card__image" src="" alt=""/>
     <button type="button" class="card__delete-button"></button>
     <div class="card__description">
       <h2 class="card__title"></h2>
