@@ -42,6 +42,8 @@
 .popup__message-error{font-size:12px;left:0;opacity:0;position:absolute;top:calc(100% + 1px);transition:.3s;z-index:1}
 .popup__message-error-active{color:red;font-size:12px;left:0;opacity:1;position:absolute;top:calc(100% + 1px);transition:.3s;z-index:1}
 .popup__type-avatar{display:flex;flex-direction:column}
+.popup__fieldset{border:none}
+.popup__field-first{margin-bottom:30px}
 .popup{align-items:center;background-color:rgba(0,0,0,.5);bottom:0;display:flex;font-family:Inter,Arial,sans-serif;justify-content:center;left:0;opacity:0;position:fixed;right:0;top:0;transition:visibility 1s,opacity .5s linear;visibility:hidden;z-index:10}
 .popup_is-animated{display:flex;opacity:0;pointer-events:none;transition:visibility 0s .6s,opacity .6s;-webkit-user-select:none;-moz-user-select:none;user-select:none;visibility:hidden}
 .popup_is-opened{opacity:1;visibility:visible}
