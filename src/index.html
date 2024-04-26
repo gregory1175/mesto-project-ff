@@ -38,8 +38,8 @@
       <button type="button" class="popup__close"></button>
       <h3 class="popup__title">Редактировать профиль</h3>
       <form class="popup__form" name="edit-profile" novalidate>
-        <fieldset class="form__set" style="border: none;">
-        <label class="popup__field popup__field-first" style="margin-bottom: 30px;">
+        <fieldset class="popup__fieldset">
+        <label class="popup__field popup__field-first">
           <input
           type="text" name="name" class="popup__input popup__input_type_name"
           id="name-input"  placeholder="Имя"  minlength="2"  maxlength="40" 
@@ -66,8 +66,8 @@
       <button type="button" class="popup__close"></button>
       <h3 class="popup__title">Новое место</h3>
       <form class="popup__form" name="new-place" novalidate>
-        <fieldset class="form__set" style="border: none;">
-        <label class="popup__field popup__field-first" style="margin-bottom: 30px;">
+        <fieldset class="popup__fieldset">
+        <label class="popup__field popup__field-first">
         <input type="text" name="place-name" class="popup__input popup__input_type_card-name"
          id="place-input" placeholder="Название" minlength="2" maxlength="30"
          pattern=^[A-Za-zА-Яа-яЁё\s\-]+$  data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"required>
@@ -96,7 +96,7 @@
   <button type="button" class="popup__close"></button>
   <h3 class="popup__title">Обновить аватар</h3>
   <form class="popup__form" name="new-avatar" novalidate>
-    <fieldset class="form__set" style="border: none;">
+    <fieldset class="popup__fieldset">
       <label class="popup__field">
       <input type="url" name="avatar" class="popup__input popup__input_type_avatar_url" id="avatar-link-input" placeholder="Ссылка на картинку" required>
       <span class="span-text avatar-link-input-error" ></span>

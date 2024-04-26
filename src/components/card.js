@@ -20,11 +20,11 @@ const createCard = (item, handleDelete, handleLike, handleClick, userData) => {
         deleteButton.style.display = 'none';
     }
 
-    const likeCountElement = cardElement.querySelector('.card__likes-counter'); 
-    likeCountElement.textContent = item.likesCount; 
+    const likeCountElement = cardElement.querySelector('.card__likes-counter');
+    likeCountElement.textContent = item.likesCount;
 
     const likeButton = cardElement.querySelector('.card__like-button');
-    
+
     if (item.likes && Array.isArray(item.likes)) {
 
         const likedByCurrentUser = item.likes.some(like => like._id === userData._id);
@@ -48,5 +48,5 @@ const createCard = (item, handleDelete, handleLike, handleClick, userData) => {
 
 
 export {
-  createCard
+    createCard
 };

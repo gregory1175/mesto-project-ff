@@ -25,14 +25,14 @@ function handleClickOutside(evt) {
     }
 }
 
-function setPopupListeners(){
+function setPopupListeners() {
     document.addEventListener('click', (evt) => {
         if (evt.target.classList.contains('popup__close')) {
             closePopup(profilePopup);
         }
     });
-    } 
-    
+}
+
 export {
     openPopup,
     closePopup,

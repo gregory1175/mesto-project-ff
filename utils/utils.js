@@ -8,7 +8,7 @@ function checkResponse(res) {
 async function request(url, options) {
     const response = await fetch(url, options);
     return checkResponse(response);
-  }
+}
 
 export {
     request,
